@@ -119,6 +119,33 @@ matrix:
     - "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/mips64/core/ $S3_PARAMS"
 
   # -----------------
+  - name: "Linux ppc64le"
+  # -----------------
+    dist: xenial
+    language: c
+    compiler: gcc
+
+    addons:
+      apt:
+        packages:
+        - cmake
+        - gcc-4.8-powerpc64le-linux-gnu
+        - libc6-dev-ppc64el-cross
+
+    before_install:
+    - pip install --user awscli
+    - export PATH=$PATH:$HOME/.local/bin
+
+    script:
+    - mkdir build
+    - cd build
+    - CC="powerpc64le-linux-gnu-gcc-4.8" cmake -DCMAKE_BUILD_TYPE=Release ..
+    - cmake --build .
+    - "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/linux/ppc64le/core/ $S3_PARAMS"
+    - "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/linux/ppc64le/core/ $S3_PARAMS"
+    - "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/ppc64le/core/ $S3_PARAMS"
+
+  # -----------------
   - name: "macOS"
   # -----------------
     language: objective-c
