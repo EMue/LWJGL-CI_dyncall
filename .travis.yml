@@ -32,9 +32,9 @@ matrix:
     - cd build
     - CC="gcc-4.8" cmake -DCMAKE_BUILD_TYPE=Release ..
     - cmake --build .
-    - "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/linux/x64/core/ $S3_PARAMS"
-    - "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/linux/x64/core/ $S3_PARAMS"
-    - "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/x64/core/ $S3_PARAMS"
+    #- "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/linux/x64/core/ $S3_PARAMS"
+    #- "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/linux/x64/core/ $S3_PARAMS"
+    #- "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/x64/core/ $S3_PARAMS"
 
   # -----------------
   - name: "Linux arm32"
@@ -59,9 +59,9 @@ matrix:
     - cd build
     - CC="arm-linux-gnueabihf-gcc-4.8" cmake -DCMAKE_BUILD_TYPE=Release ..
     - cmake --build .
-    - "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/linux/arm32/core/ $S3_PARAMS"
-    - "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/linux/arm32/core/ $S3_PARAMS"
-    - "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/arm32/core/ $S3_PARAMS"
+    #- "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/linux/arm32/core/ $S3_PARAMS"
+    #- "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/linux/arm32/core/ $S3_PARAMS"
+    #- "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/arm32/core/ $S3_PARAMS"
 
   # -----------------
   - name: "Linux arm64"
@@ -86,9 +86,9 @@ matrix:
     - cd build
     - CC="aarch64-linux-gnu-gcc-4.8" cmake -DCMAKE_BUILD_TYPE=Release ..
     - cmake --build .
-    - "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/linux/arm64/core/ $S3_PARAMS"
-    - "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/linux/arm64/core/ $S3_PARAMS"
-    - "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/arm64/core/ $S3_PARAMS"
+    #- "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/linux/arm64/core/ $S3_PARAMS"
+    #- "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/linux/arm64/core/ $S3_PARAMS"
+    #- "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/arm64/core/ $S3_PARAMS"
 
   # -----------------
   - name: "Linux mips64"
@@ -114,9 +114,9 @@ matrix:
     - cd build
     - CC="mips64el-linux-gnuabi64-gcc-5" cmake -DCMAKE_BUILD_TYPE=Release ..
     - cmake --build .
-    - "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/linux/mips64/core/ $S3_PARAMS"
-    - "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/linux/mips64/core/ $S3_PARAMS"
-    - "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/mips64/core/ $S3_PARAMS"
+    #- "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/linux/mips64/core/ $S3_PARAMS"
+    #- "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/linux/mips64/core/ $S3_PARAMS"
+    #- "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/mips64/core/ $S3_PARAMS"
 
   # -----------------
   - name: "Linux ppc64le"
@@ -141,9 +141,9 @@ matrix:
     - cd build
     - CC="powerpc64le-linux-gnu-gcc-4.8" cmake -DCMAKE_BUILD_TYPE=Release ..
     - cmake --build .
-    - "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/linux/ppc64le/core/ $S3_PARAMS"
-    - "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/linux/ppc64le/core/ $S3_PARAMS"
-    - "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/ppc64le/core/ $S3_PARAMS"
+    #- "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/linux/ppc64le/core/ $S3_PARAMS"
+    #- "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/linux/ppc64le/core/ $S3_PARAMS"
+    #- "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/ppc64le/core/ $S3_PARAMS"
 
   # -----------------
   - name: "macOS"
@@ -163,6 +163,6 @@ matrix:
     - cd build
     - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9 ..
     - cmake --build .
-    - "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/macosx/x64/core/ $S3_PARAMS"
-    - "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/macosx/x64/core/ $S3_PARAMS"
-    - "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/macosx/x64/core/ $S3_PARAMS"
+    #- "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/macosx/x64/core/ $S3_PARAMS"
+    #- "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/macosx/x64/core/ $S3_PARAMS"
+    #- "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/macosx/x64/core/ $S3_PARAMS"
