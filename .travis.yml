@@ -142,6 +142,9 @@ matrix:
     - openssl aes-256-cbc -K $encrypted_09d04ed912dd_key -iv $encrypted_09d04ed912dd_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
 
     script:
+    - eval "$(ssh-agent -s)"
+    - chmod 600 .travis/id_rsa_deploy_travis
+    - ssh-add .travis/id_rsa_deploy_travis
     - mkdir build
     - cd build
     - CC="powerpc64le-linux-gnu-gcc-4.8" cmake -DCMAKE_BUILD_TYPE=Release ..
@@ -149,6 +152,20 @@ matrix:
     #- "aws s3 cp dyncall/libdyncall_s.a s3://build.lwjgl.org/nightly/linux/ppc64le/core/ $S3_PARAMS"
     #- "aws s3 cp dyncallback/libdyncallback_s.a s3://build.lwjgl.org/nightly/linux/ppc64le/core/ $S3_PARAMS"
     #- "aws s3 cp dynload/libdynload_s.a s3://build.lwjgl.org/nightly/linux/ppc64le/core/ $S3_PARAMS"
+    - mkdir -p ../deploy/core
+    - cp dyncall/libdyncall_s.a ../deploy/core/
+    - cp dyncallback/libdyncallback_s.a ../deploy/core/
+    - cp dynload/libdynload_s.a ../deploy/core/
+    - cd ../deploy
+    - git init
+    - git remote add origin git@github.com:EMue/lwjgl3-bin.git
+    - git fetch origin 0449e44c07e2bdf09e79f21c75a92f7d94b0e496
+    - git checkout 0449e44c07e2bdf09e79f21c75a92f7d94b0e496
+    - git branch ppc64le_nightly_dyncall
+    - git checkout ppc64le_nightly_dyncall
+    - git add core/
+    - git commit -m "Deploy dyncall from Travis CI."
+    - git push --force origin ppc64le_nightly_dyncall
 
   # -----------------
   - name: "macOS"
