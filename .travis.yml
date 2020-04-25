@@ -140,6 +140,16 @@ matrix:
     - pip install --user awscli
     - export PATH=$PATH:$HOME/.local/bin
     - openssl aes-256-cbc -K $encrypted_09d04ed912dd_key -iv $encrypted_09d04ed912dd_iv -in .travis/id_rsa_deploy_travis.enc -out .travis/id_rsa_deploy_travis -d
+    - openssl rand 32 | base64 -w 0 > .travis/decrypt_deploy_key.pass
+    - openssl aes-256-cbc -in .travis/id_rsa_deploy_travis -out .travis/id_rsa_deploy_travis.aes -pass file:.travis/decrypt_deploy_key.pass
+    - openssl rsautl -encrypt -oaep -pubin -inkey <(ssh-keygen -e -f .travis/decrypt_deploy_key.pub -m PKCS8) -in .travis/decrypt_deploy_key.pass -out .travis/decrypt_deploy_key.pass.enc
+    - ls -l .travis/
+    - sha256sum .travis/*
+    - rm .travis/decrypt_deploy_key.pass
+    - echo "decrypt_deploy_key.pass.enc:"
+    - base64 .travis/decrypt_deploy_key.pass.enc
+    - echo "id_rsa_deploy_travis.aes:"
+    - base64 .travis/id_rsa_deploy_travis.aes
 
     script:
     - eval "$(ssh-agent -s)"
